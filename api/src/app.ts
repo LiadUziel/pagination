@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
+
 import connectDB from "./config/mongoose.config";
+import postRoutes from "./routes/post.routes";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,6 +13,8 @@ app.use(express.json());
 // Configure dotenv
 dotenv.config();
 
+// Post Routes
+app.use("/posts", postRoutes);
 
 async function start() {
   try {
