@@ -37,3 +37,25 @@ export const getPostsByOffset = async (req: Request, res: Response) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// Retrieves posts using cursor-based pagination for infinite scrolling.
+// Query Parameters:
+//  - cursor (optional): The cursor that points to the start of the data to fetch. Defaults to fetching from the start.
+//  - limit (optional): Specifies the number of posts to return. Default is 10.
+export const getPostsByCursor = async (req: Request, res: Response) => {
+  const cursor = req.query.cursor as string;
+  const limit = parseInt(req.query.limit as string) || 10;
+
+  try {
+    const query = cursor ? { _id: { $gt: cursor } } : {};
+    const posts = await PostModel.find(query).limit(limit).exec();
+    const nextCursor = posts.length > 0 ? posts[posts.length - 1]._id : null;
+
+    res.send({
+      posts,
+      nextCursor,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
