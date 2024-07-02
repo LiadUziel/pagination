@@ -1,18 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import "./Navbar.css";
+import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/offset">Offset Pagination</Link>
-        </li>
-        <li>
-          <Link to="/cursor">Cursor Pagination</Link>
-        </li>
-      </ul>
-    </nav>
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          My App
+        </Typography>
+        <Button color="inherit" component={NavLink} to="/offset">
+          Offset Pagination
+        </Button>
+        <Button color="inherit" component={NavLink} to="/cursor">
+          Cursor Pagination
+        </Button>
+      </Toolbar>
+    </AppBar>
   );
 };
 

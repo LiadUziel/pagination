@@ -8,13 +8,11 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <div>
-          <Navbar />
-          <Routes>
-            <Route path="/offset" element={<OffsetPagination />} />
-            <Route path="/cursor" element={<CursorPagination />} />
-          </Routes>
-        </div>
+        <Navbar />
+        <Routes>
+          <Route path="/offset" element={<OffsetPagination />} />
+          <Route path="/cursor" element={<CursorPagination />} />
+        </Routes>
       </BrowserRouter>
     </>
   );
