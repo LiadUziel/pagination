@@ -9,3 +9,8 @@ export interface FetchOffsetResponse {
   totalPages: number;
   currentPage: number;
 }
+
+export interface FetchCursorResponse {
+  posts: Post[];
+  nextCursor: string;
+}
