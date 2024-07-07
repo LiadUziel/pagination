@@ -1,11 +1,19 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 
 import connectDB from "./config/mongoose.config";
 import postRoutes from "./routes/post.routes";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Only allow a specific origin
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 
 // Middleware to parse JSON bodies
 app.use(express.json());
